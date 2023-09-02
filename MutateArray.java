@@ -1,11 +1,11 @@
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedList;
 
-public class Mutate {
-    private LinkedList<Character> q = new LinkedList<>();
+public class MutateArray {
+    private ArrayList<Character> q = new ArrayList<>();
     private HashMap<String, Character> MUTATION_DICT = new HashMap<>();
 
-    public Mutate(String chain) {
+    public MutateArray(String chain) {
         for (int i = 0; i < chain.length(); i++) {
             q.add(chain.charAt(i));
         }
@@ -26,7 +26,7 @@ public class Mutate {
             int nextMutationIndex = this.findMutation();
 
             if (nextMutationIndex >= 0) {
-                this.q.addLast(this.mutate(nextMutationIndex));
+                this.q.add(this.mutate(nextMutationIndex));
                 mutated = true;
             }
         }

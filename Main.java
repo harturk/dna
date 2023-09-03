@@ -1,5 +1,5 @@
 public class Main {
-    private static String fileName = "caso100k.txt";
+    private static String fileName = "caso100.txt";
 
     public static void main(String[] args) {
         In file = new In("./files/" + fileName);

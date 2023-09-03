@@ -2,12 +2,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class MutateArray {
-    private ArrayList<Character> q = new ArrayList<>();
+    private ArrayList<Character> mainChain;
+    private ArrayList<Character> unMutaded;
     private HashMap<String, Character> MUTATION_DICT = new HashMap<>();
 
     public MutateArray(String chain) {
+        this.mainChain = new ArrayList<>(chain.length());
+        this.unMutaded = new ArrayList<>(chain.length());
         for (int i = 0; i < chain.length(); i++) {
-            q.add(chain.charAt(i));
+            this.mainChain.add(chain.charAt(i));
         }
 
         MUTATION_DICT.put("DN", 'A');
@@ -20,31 +23,51 @@ public class MutateArray {
 
     public String reduceChain() {
         boolean mutated = true;
+        int nextMutationIndex = 0;
 
         while (mutated) {
             mutated = false;
-            int nextMutationIndex = this.findMutation();
+            nextMutationIndex = this.findMutation(0);
 
             if (nextMutationIndex >= 0) {
-                this.q.add(this.mutate(nextMutationIndex));
+                char mutation = this.mutate(nextMutationIndex);
                 mutated = true;
+                this.copyChains(nextMutationIndex + 2);
+                this.mainChain = this.unMutaded;
+                this.mainChain.add(mutation);
+                this.unMutaded = new ArrayList<>(this.mainChain.size());
+            }
+
+            nextMutationIndex--;
+            if (nextMutationIndex < 0) {
+                nextMutationIndex = 0;
             }
         }
 
-        return this.q.toString();
+        return this.mainChain.toString();
     }
 
-    public int findMutation() {
-        for (int i = 0; i < this.q.size() - 1; i++) {
-            if (q.get(i) != q.get(i + 1))
+    public int findMutation(int startingIndex) {
+        for (int i = startingIndex; i < this.mainChain.size() - 1; i++) {
+            if (this.mainChain.get(i) != this.mainChain.get(i + 1)) {
                 return i;
+            } else {
+                this.unMutaded.add(i, this.mainChain.get(i));
+            }
         }
 
         return -1;
     }
 
     public char mutate(int index) {
-        String chain = new StringBuilder().append(this.q.remove(index)).append(this.q.remove(index)).toString();
+        String chain = new StringBuilder().append(this.mainChain.get(index)).append(this.mainChain.get(index + 1))
+                .toString();
         return this.MUTATION_DICT.get(chain);
+    }
+
+    public void copyChains(int startingIndex) {
+        for (int i = startingIndex; i < this.mainChain.size(); i++) {
+            this.unMutaded.add(this.mainChain.get(i));
+        }
     }
 }

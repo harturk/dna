@@ -31,7 +31,7 @@ public class MutateList {
             }
         }
 
-        return this.q.toString();
+        return this.q.toArray().toString();
     }
 
     public int findMutation() {

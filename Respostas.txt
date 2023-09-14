@@ -1,0 +1,42 @@
+Casos de teste, resultados e tempo aproximado da minha implementação:
+
+../casos-cohen/caso10.txt
+Length: 10
+[D]
+java App $i  0.08s user 0.01s system 146% cpu 0.062 total
+----
+../casos-cohen/caso100.txt
+Length: 100
+[N]
+java App $i  0.07s user 0.01s system 155% cpu 0.049 total
+----
+../casos-cohen/caso1000.txt
+Length: 1000
+[AA]
+java App $i  0.07s user 0.01s system 157% cpu 0.050 total
+----
+../casos-cohen/caso10k.txt
+Length: 10000
+[AAA]
+java App $i  0.09s user 0.02s system 164% cpu 0.062 total
+----
+../casos-cohen/caso100k.txt
+Length: 100000
+[AAA]
+java App $i  0.13s user 0.02s system 177% cpu 0.086 total
+----
+../casos-cohen/caso1000k.txt
+Length: 1000000
+[N]
+java App $i  0.43s user 0.03s system 204% cpu 0.222 total
+----
+../casos-cohen/caso10000k.txt
+Length: 10000000
+[DDDDDD]
+java App $i  4.25s user 0.82s system 341% cpu 1.486 total
+----
+../casos-cohen/caso30000k.txt
+Length: 30000000
+[DDD]
+java App $i  15.13s user 3.14s system 388% cpu 4.708 total
+----
